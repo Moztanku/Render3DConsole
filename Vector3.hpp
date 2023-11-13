@@ -49,7 +49,7 @@ struct Vector3 {
     }
 
     friend constexpr Vector3 rotate(const Vector3& vec, const Vector3& axis, float angle) {
-        
+        return {0.f,0.f,0.f};
     }
 
     friend constexpr float distance(const Vector3& a, const Vector3& b) {

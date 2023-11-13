@@ -17,7 +17,7 @@ class Renderer {
             const int width = RenderBuffer.getWidth();
             const int height = RenderBuffer.getHeight();
 
-            const Vector3 base = rotate(normalize(Vector3{0.f, 0.f, 1.f}), cameraRotation);
+            const Vector3 base = rotate(normalize(Vector3{1.f, 1.f, 1.f}), cameraRotation);
 
             const float stepFovH = horizFov / width;
             const float stepFovV = vertFov / height;
@@ -38,17 +38,17 @@ class Renderer {
                     //     x,y, dir.x, dir.y, dir.z
                     //     );
 
-                    if(dir.z > maxZ){
-                        // std::cout << std::format("new maxZ = {}, {} {}\n", dir.z, x, y);
-                        maxZ = dir.z;
-                    }
+                    // if(dir.z > maxZ){
+                    //     // std::cout << std::format("new maxZ = {}, {} {}\n", dir.z, x, y);
+                    //     maxZ = dir.z;
+                    // }
 
-                    if(x == width/2){
-                        std::cout << std::format(
-                            "{},{} dir = {{{},{},{}}} \n",
-                            x,y, dir.x, dir.y, dir.z
-                        );
-                    }
+                    // if(x == width/2){
+                    //     std::cout << std::format(
+                    //         "{},{} dir = {{{},{},{}}} \n",
+                    //         x,y, dir.x, dir.y, dir.z
+                    //     );
+                    // }
 
                     if(result)
                         RenderBuffer.setPixel(x, y, 100);
@@ -56,9 +56,11 @@ class Renderer {
                         RenderBuffer.setPixel(x, y, 0);
                 }
 
-            std::cout << std::format("base = {{{},{},{}}}\n", base.x, base.y, base.z);
-            std::cout << std::format("maxZ = {}\n", maxZ);
-            exit(1);
+            drawDebugInfo();
+
+            // std::cout << std::format("base = {{{},{},{}}}\n", base.x, base.y, base.z);
+            // std::cout << std::format("maxZ = {}\n", maxZ);
+            // exit(1);
         }
 
         void drawDebugInfo()
