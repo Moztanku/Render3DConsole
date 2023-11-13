@@ -33,10 +33,22 @@ class Input
                     renderer.rotateCamera({-0.1f, 0.f, 0.f});
                     break;
                 case ';':
-                    renderer.moveCamera({0.f, 0.f, 0.1f});
+                    renderer.rotateCamera({0.f, 0.f, 0.1f});
                     break;
                 case '\'':
-                    renderer.moveCamera({0.f, 0.f, -0.1f});
+                    renderer.rotateCamera({0.f, 0.f, -0.1f});
+                    break;
+                case 'w':
+                    renderer.moveCameraForward({0.f, 0.f, 10.f});
+                    break;
+                case 's':
+                    renderer.moveCameraForward({0.f, 0.f, -10.0f});
+                    break;
+                case 'a':
+                    renderer.moveCameraForward({-10.0f, 0.f, 0.f});
+                    break;
+                case 'd':
+                    renderer.moveCameraForward({10.0f, 0.f, 0.f});
                     break;
             }
         }

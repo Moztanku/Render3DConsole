@@ -13,6 +13,9 @@ int main(int argc, char** argv)
     if(!Vector3::test())
         throw std::runtime_error("Vector3 test failed");
 
+    if(!Renderer::test())
+        throw std::runtime_error("raySphereIntersect test failed");
+
     const int WIDTH =
         argc > 1 ? std::stoi(argv[1]) : 30;
     const int HEIGHT =
@@ -30,7 +33,7 @@ int main(int argc, char** argv)
         buffer.clear();
         input.handleInput();
 
-        renderer.renderScene();
+        renderer.renderScene();        
         buffer.draw();
 
         std::chrono::duration<double> elapsed = std::chrono::high_resolution_clock::now() - start;

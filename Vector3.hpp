@@ -9,6 +9,11 @@ float deg2rad(float deg)
     return deg * (M_PI / 180.f);
 }
 
+float rad2deg(float rad)
+{
+    return rad * (180.f / M_PI);
+}
+
 struct Vector3 {
     float x;
     float y;
@@ -41,6 +46,10 @@ struct Vector3 {
         float y3 = sinZ * x2 + cosZ * y1;
 
         return Vector3(x3, y3, z2);
+    }
+
+    friend constexpr Vector3 rotate(const Vector3& vec, const Vector3& axis, float angle) {
+        
     }
 
     friend constexpr float distance(const Vector3& a, const Vector3& b) {
@@ -77,7 +86,7 @@ struct Vector3 {
 
         auto compare = [](float a, float b){
             float diff = a - b;
-            if(diff < 0.0001f && diff > -0.0001f)
+            if(diff < 0.00001f && diff > -0.00001f)
                 return true;
             else
                 return false;
@@ -110,6 +119,19 @@ struct Vector3 {
             check(rotate(vec, {0.f,0.f,deg2rad(90.f)}), {-1.f, 1.f, 1.f});
 
             check(rotate(vec, {0.f,deg2rad(180.f),0.f}), {-1.f, 1.f, -1.f});
+
+            Vector3 normalized = normalize(vec);
+            for(int x = 0.f; x < 360.f; x+=10.f)
+                for(int y = 0.f; y < 360.f; y+=10.f)
+                    for(int z = 0.f; z < 360.f; z+=10.f)
+                    {
+                        auto dist = distance(rotate(normalized, {deg2rad(x), deg2rad(y), deg2rad(z)}), {0.f, 0.f, 0.f});
+                        if(!compare(dist,1.f))
+                        {
+                            std::cerr << std::format("Vector3::rotate failed, expected: {}, actual: {}\n", 1.f, dist);
+                            success = false;
+                        }
+                    }
         }
 
         return success;

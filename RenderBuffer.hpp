@@ -30,6 +30,13 @@ class RenderBuffer
             backBuffer[y * width + x] = getChar(brightness);
         }
 
+        void setChar(uint x, uint y, char character)
+        {
+            if(x >= width || y >= height) return;
+
+            backBuffer[y * width + x] = character;
+        }
+
         void draw()
         {
             clear_terminal();
