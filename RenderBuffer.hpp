@@ -52,8 +52,8 @@ class RenderBuffer
             std::cout << std::string(width + 2, 'x') << std::endl;
         }
 
-        const uint getWidth() const { return width; }
-        const uint getHeight() const { return height; }
+        [[nodiscard]] constexpr const uint getWidth() const noexcept { return width; }
+        [[nodiscard]] constexpr const uint getHeight() const noexcept { return height; }
 
     private:
         using Buffer = std::vector<char>;

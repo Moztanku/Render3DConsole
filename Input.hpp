@@ -21,10 +21,10 @@ class Input
             switch(key)
             {
                 case 'q':
-                    renderer.rotateCamera({0.f, 0.1f, 0.f});
+                    renderer.rotateCamera({0.f, 0.05f, 0.f});
                     break;
                 case 'e':
-                    renderer.rotateCamera({0.f, -0.1f, 0.f});
+                    renderer.rotateCamera({0.f, -0.05f, 0.f});
                     break;
                 case '[':
                     renderer.rotateCamera({0.1f, 0.f, 0.f});
@@ -39,16 +39,16 @@ class Input
                     renderer.rotateCamera({0.f, 0.f, -0.1f});
                     break;
                 case 'w':
-                    renderer.moveCameraForward({0.f, 0.f, 10.f});
+                    renderer.moveCameraForward({10.f, 0.f, 0.f});
                     break;
                 case 's':
-                    renderer.moveCameraForward({0.f, 0.f, -10.0f});
+                    renderer.moveCameraForward({-10.f, 0.f, 0.0f});
                     break;
                 case 'a':
-                    renderer.moveCameraForward({-10.0f, 0.f, 0.f});
+                    renderer.moveCameraForward({0.0f, 0.f, 10.f});
                     break;
                 case 'd':
-                    renderer.moveCameraForward({10.0f, 0.f, 0.f});
+                    renderer.moveCameraForward({0.0f, 0.f, -10.f});
                     break;
             }
         }
