@@ -52,15 +52,20 @@ class Renderer {
                     auto result = raySphereIntersect(cameraPosition, dir, spherePosition, sphereRadius);
 
                     if(!result.hit)
+                    {
+                        uint brightness = drawSky(dir);
+
+                        renderBuffer.setPixel(x, y, brightness);
                         continue;
+                    }
 
                     const Vector3 notnormal = result.points.first - spherePosition;
                     const Vector3 normal = normalize(result.points.first - spherePosition);
 
                     const float arc = fabs(arch(-dir, normal));
 
-                    const uint baseBrightness = 25u;
-                    const uint normalBrightness = 20u * cosf(arc);
+                    const uint baseBrightness = 15u;
+                    const uint normalBrightness = 0u * cosf(arc);
 
                     const float dotp = dotproduct(normal, -skyLightDirection);
                     const uint skyBrigtness = dotp > 0 ? skyLightBrightness * dotp : 0u;
@@ -71,6 +76,20 @@ class Renderer {
 
             drawDebugInfo();
         }
+
+        uint drawSky(const Vector3& dir)
+        {
+            const float dotp = dotproduct(dir, -skyLightDirection);
+            const uint skyBrigtness = dotp > 0 ? skyLightBrightness * dotp * dotp * dotp * dotp * dotp * dotp : 0u;
+
+
+            return skyBrigtness;
+        }
+
+uint drawSkyBox(const Vector3& dir)
+{
+    
+}
 
         void drawDebugInfo()
         {

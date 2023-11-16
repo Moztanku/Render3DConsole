@@ -39,10 +39,10 @@ class Input
                     renderer.rotateCamera({0.f, 0.f, -0.1f});
                     break;
                 case 'w':
-                    renderer.moveCameraForward({10.f, 0.f, 0.f});
+                    renderer.moveCameraForward({25.f, 0.f, 0.f});
                     break;
                 case 's':
-                    renderer.moveCameraForward({-10.f, 0.f, 0.0f});
+                    renderer.moveCameraForward({-25.f, 0.f, 0.0f});
                     break;
                 case 'a':
                     renderer.moveCameraForward({0.0f, 0.f, 10.f});
