@@ -9,7 +9,7 @@ class Renderer {
     public:
         Renderer(RenderBuffer& renderBuffer): 
             renderBuffer(renderBuffer),
-            vertFov((horizFov * renderBuffer.getHeight() / renderBuffer.getWidth()) * 1.5f)
+            vertFov((horizFov * renderBuffer.getHeight() / renderBuffer.getWidth()) * 2.0f)
             {
             };
 
@@ -59,7 +59,13 @@ class Renderer {
 
                     const float arc = fabs(arch(-dir, normal));
 
-                    const uint brightness = 200u * cosf(arc) + 20;
+                    const uint baseBrightness = 25u;
+                    const uint normalBrightness = 20u * cosf(arc);
+
+                    const float dotp = dotproduct(normal, -skyLightDirection);
+                    const uint skyBrigtness = dotp > 0 ? skyLightBrightness * dotp : 0u;
+
+                    const uint brightness = baseBrightness + normalBrightness + skyBrigtness;
                     renderBuffer.setPixel(x, y, brightness);
                 }
 
@@ -126,6 +132,10 @@ class Renderer {
         // sphere
         Vector3 spherePosition = {1000.f, 0.f, 0.f};
         float sphereRadius = 200.f;
+
+        // Sky light
+        Vector3 skyLightDirection = normalize({0.5f, 0.2f, 0.1f});
+        uint skyLightBrightness = 100u;
 
         struct IntersectionResult
         {

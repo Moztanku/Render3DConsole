@@ -7,6 +7,7 @@
 
 class RenderBuffer
 {
+
     public:
         RenderBuffer(uint width, uint height)
             : width(width), height(height), 
@@ -61,7 +62,7 @@ class RenderBuffer
 
         constexpr static char getChar(uint brightness)
         {
-            constexpr std::array<char, 10> characters = {' ', '.', ':', '-', '=', '+', '*', '#', '%', '@'};
+            constexpr std::array<char, 10> characters = {' ', '.', '-', ':', '*', '+', '=', '%', '#', '@'};
 
             if(brightness > 100) brightness = 100;
 
